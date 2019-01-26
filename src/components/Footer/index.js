@@ -6,7 +6,12 @@ import { styles } from "./styles";
 
 const Footer = ({ classes }) => (
   <div className={classes.pos}>
-    <Typography variant="caption" gutterBottom align="center">
+    <Typography
+      variant="caption"
+      gutterBottom
+      align="center"
+      className={classes.footer}
+    >
       Powered by Mushkin Vitaliy © 2019
     </Typography>
   </div>

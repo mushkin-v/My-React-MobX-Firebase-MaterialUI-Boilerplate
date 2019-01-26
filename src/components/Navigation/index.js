@@ -34,9 +34,9 @@ const NavigationAuth = ({ anchorEl, handleMenuItemClick }) => (
     onClose={() => handleMenuItemClick}
     TransitionComponent={Fade}
   >
-    <MenuItem onClick={() => handleMenuItemClick(routes.LANDING)}>
+    {/* <MenuItem onClick={() => handleMenuItemClick(routes.LANDING)}>
       Landing
-    </MenuItem>
+    </MenuItem> */}
     <MenuItem onClick={() => handleMenuItemClick(routes.HOME)}>Home</MenuItem>
     <MenuItem onClick={() => handleMenuItemClick(routes.ACCOUNT)}>
       Account
@@ -56,7 +56,7 @@ const NavigationNonAuth = ({ anchorEl, handleMenuItemClick }) => (
     TransitionComponent={Fade}
   >
     <MenuItem onClick={() => handleMenuItemClick(routes.LANDING)}>
-      Landing
+      Home
     </MenuItem>
     <MenuItem onClick={() => handleMenuItemClick(routes.SIGN_IN)}>
       Sign In

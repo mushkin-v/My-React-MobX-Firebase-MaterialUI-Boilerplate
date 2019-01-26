@@ -7,13 +7,35 @@ import App from "./components/App";
 import { Provider } from "mobx-react";
 import store from "./stores";
 import Firebase, { FirebaseContext } from "./components/Firebase";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
 dotenv.config();
+
+const theme = createMuiTheme({
+  typography: {
+    // Use the system font instead of the default Roboto font.
+    fontFamily: [
+      "Oswald",
+      "Roboto",
+      "-apple-system",
+      "BlinkMacSystemFont",
+      '"Segoe UI"',
+      '"Helvetica Neue"',
+      "Arial",
+      "sans-serif",
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"'
+    ].join(",")
+  }
+});
 
 ReactDOM.render(
   <Provider {...store}>
     <FirebaseContext.Provider value={new Firebase()}>
-      <App />
+      <MuiThemeProvider theme={theme}>
+        <App />
+      </MuiThemeProvider>
     </FirebaseContext.Provider>
   </Provider>,
   document.getElementById("root")
