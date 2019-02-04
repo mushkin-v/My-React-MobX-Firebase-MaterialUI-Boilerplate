@@ -14,11 +14,15 @@ class ColumnsStore {
   get getColumns() {
     return this.columns;
   }
+  get countColumns() {
+    return this.columns.size;
+  }
 }
 
 decorate(ColumnsStore, {
   columns: observable,
   getColumns: computed,
+  countColumns: computed,
   setColumns: action
 });
 

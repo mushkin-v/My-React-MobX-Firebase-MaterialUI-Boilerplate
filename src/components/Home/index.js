@@ -5,7 +5,9 @@ import { compose } from "recompose";
 import withAuthorization from "../Session/withAuthorization";
 import { withFirebase } from "../Firebase";
 
-import AddButton from "./AddBotton";
+import AddButton from "./addBotton";
+import SimpleList from "./list";
+import Grid from "@material-ui/core/Grid";
 
 class HomePage extends Component {
   componentDidMount() {
@@ -49,9 +51,17 @@ class HomePage extends Component {
       });
   };
 
+  onPhraseClick = (i, e) => {
+    console.log(`Phrase ${i} click!`);
+  };
+  onPhraseDeleteClick = (i, e) => {
+    console.log(`Phrase ${i} Delete click!`);
+  };
+
   render() {
     const currentUser = this.props.userStore.getUser;
     const columns = this.props.columnsStore.getColumns;
+    const countColumns = this.props.columnsStore.countColumns;
     return (
       <div>
         <AddButton onClick={this.addButtonClick} />
@@ -64,11 +74,18 @@ class HomePage extends Component {
           email=${currentUser.email}`}
         </p>
         <p>ColumnsList:</p>
-        {Array.from(columns.keys()).map(key => (
-          <p key={key}>
-            {key} : {columns.get(key)}
-          </p>
-        ))}
+        <Grid container justify="center" spacing={40}>
+          {Array.from(columns.keys()).map(key => (
+            <Grid key={key} item xs={Math.round(12 / countColumns)}>
+              <SimpleList
+                key={key}
+                phrases={columns.get(key)}
+                onPhraseClick={this.onPhraseClick}
+                onPhraseDeleteClick={this.onPhraseDeleteClick}
+              />
+            </Grid>
+          ))}
+        </Grid>
       </div>
     );
   }
