@@ -1,9 +1,9 @@
 {
-  "short_name": "My React-MobX-Firebase-MaterialUI Boilerplate",
-  "name": "My React-MobX-Firebase-MaterialUI Boilerplate",
+  "short_name": "Best Greetings Generator App",
+  "name": "Best Greetings Generator App",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "images/logo-1.gif",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     }

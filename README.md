@@ -1,4 +1,4 @@
-# My React-MobX-Firebase-MaterialUI Boilerplate
+# Best Greetings Generator App
 
 You need to create a file .env in the root project folder:
 

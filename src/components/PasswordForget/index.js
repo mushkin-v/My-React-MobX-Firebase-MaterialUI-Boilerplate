@@ -58,9 +58,7 @@ class PasswordForgetForm extends Component {
       <React.Fragment>
         <main className={classes.layout}>
           <Paper className={classes.paper}>
-            <Typography variant="headline">
-              Enter your recovery email
-            </Typography>
+            <Typography variant="h5">Enter your recovery email</Typography>
             <form className={classes.form} onSubmit={this.onSubmit}>
               <FormControl margin="normal" required fullWidth>
                 <InputLabel htmlFor="email">Email Address</InputLabel>

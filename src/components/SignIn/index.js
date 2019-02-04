@@ -75,7 +75,7 @@ class SignInForm extends Component {
       <React.Fragment>
         <main className={classes.layout}>
           <Paper className={classes.paper}>
-            <Typography variant="headline">Sign in</Typography>
+            <Typography variant="h5">Sign in</Typography>
             <form className={classes.form} onSubmit={this.onSubmit}>
               <FormControl margin="normal" required fullWidth>
                 <InputLabel htmlFor="email">Email Address</InputLabel>

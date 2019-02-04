@@ -18,7 +18,7 @@ const LandingPage = ({ classes, history }) => (
         align="center"
         className={classes.landingTitle}
       >
-        Greetings Generator App
+        Best Greetings Generator App
       </Typography>
     </Grid>
     <Grid item xs={12}>

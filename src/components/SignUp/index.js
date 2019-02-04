@@ -68,6 +68,7 @@ class SignUpForm extends Component {
         return this.props.firebase
           .user(authUser.user.uid)
           .set({
+            id: authUser.user.uid,
             username,
             email
           })
@@ -108,7 +109,7 @@ class SignUpForm extends Component {
       <React.Fragment>
         <main className={classes.layout}>
           <Paper className={classes.paper}>
-            <Typography variant="headline">Create your Account</Typography>
+            <Typography variant="h5">Create your Account</Typography>
             <form className={classes.form} onSubmit={this.onSubmit}>
               <FormControl margin="normal" required fullWidth>
                 <InputLabel htmlFor="username">Full Name</InputLabel>

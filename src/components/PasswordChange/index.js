@@ -79,8 +79,8 @@ class PasswordChangeForm extends Component {
       <React.Fragment>
         <main className={classes.layout}>
           <Paper className={classes.paper}>
-            <Typography variant="title">{email}</Typography>
-            <Typography variant="subheading" className={classes.marginTop}>
+            <Typography variant="h6">{email}</Typography>
+            <Typography variant="subtitle1" className={classes.marginTop}>
               Reset Password
             </Typography>
             <form className={classes.form} onSubmit={this.onSubmit}>

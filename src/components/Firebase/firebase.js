@@ -85,6 +85,12 @@ class Firebase {
   user = uid => this.db.doc(`users/${uid}`);
 
   users = () => this.db.collection("users");
+
+  // *** Columns API ***
+
+  column = uid => this.db.doc(`columns/${uid}`);
+
+  columns = () => this.db.collection("columns");
 }
 
 export default Firebase;

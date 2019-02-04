@@ -29,7 +29,7 @@ const CustomModal = ({
         alignItems="center"
       >
         <Grid item xs={12}>
-          <Typography variant="title" id="modal-title" align="center">
+          <Typography variant="h6" id="modal-title" align="center">
             {modalText}
           </Typography>
         </Grid>

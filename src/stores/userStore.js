@@ -1,36 +1,28 @@
 import { observable, action, computed, decorate } from "mobx";
 
 class UserStore {
-  users = null;
+  user = {};
 
   constructor(rootStore) {
     this.rootStore = rootStore;
   }
 
-  setUsers = users => {
-    this.users = users;
+  setUser = (id, username, email) => {
+    this.user = {
+      id,
+      username,
+      email
+    };
   };
 
-  setUser = (user, uid) => {
-    if (!this.users) {
-      this.users = {};
-    }
-
-    this.users[uid] = user;
-  };
-
-  get userList() {
-    return Object.keys(this.users || {}).map(key => ({
-      ...this.users[key],
-      uid: key
-    }));
+  get getUser() {
+    return this.user;
   }
 }
 
 decorate(UserStore, {
-  users: observable,
-  userList: computed,
-  setUsers: action,
+  user: observable,
+  getUser: computed,
   setUser: action
 });
 
