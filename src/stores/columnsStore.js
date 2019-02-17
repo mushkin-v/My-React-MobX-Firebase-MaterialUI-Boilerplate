@@ -19,8 +19,7 @@ class ColumnsStore {
     return this.columns;
   }
   get countColumns() {
-    if (typeof this.columns !== "undefined") return this.columns.size;
-    else return 0;
+    return this.columns.size;
   }
 }
 

@@ -7,7 +7,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import IconButton from "@material-ui/core/IconButton";
 import TextField from "@material-ui/core/TextField";
 
-export function ListCustomItem(props) {
+export default function ListCustomItem(props) {
   const [underline, setUnderline] = useState(true);
 
   return (

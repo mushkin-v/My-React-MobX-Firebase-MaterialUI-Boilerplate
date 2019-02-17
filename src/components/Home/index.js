@@ -6,8 +6,9 @@ import withAuthorization from "../Session/withAuthorization";
 import { withFirebase } from "../Firebase";
 
 import AddButton from "./addBotton";
-import BuildButton from "./buildButton";
 import SimpleList from "./SimpleList";
+import Greetings from "./Greetings";
+import Snackbar from "./SimpleSnackbar";
 
 import Grid from "@material-ui/core/Grid";
 import Fab from "@material-ui/core/Fab";
@@ -15,37 +16,12 @@ import AddIcon from "@material-ui/icons/Add";
 import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
-import { TextField } from "@material-ui/core";
-import * as PropTypes from "prop-types";
-
-function Greetings(props) {
-  return (
-    <Paper>
-      <TextField
-        value={props.value}
-        multiline
-        fullWidth
-        onChange={props.onChange}
-        variant="outlined"
-      />
-      <BuildButton onClick={props.onClick} />
-    </Paper>
-  );
-}
-
-Greetings.propTypes = {
-  value: PropTypes.string,
-  onChange: PropTypes.func,
-  onClick: PropTypes.func
-};
 
 class HomePage extends Component {
   state = {
-    generatedPhrase: "Click button to generate greetings!"
-  };
-
-  handleGeneratedTextChange = event => {
-    this.setState({ generatedPhrase: event.target.value });
+    generatedPhrase: "Click button to generate greetings!",
+    showSnackbar: false,
+    snackbarText: `Can't create more then 6 columns!`
   };
 
   componentDidMount() {
@@ -76,21 +52,38 @@ class HomePage extends Component {
       });
   }
 
+  handleGeneratedTextChange = event => {
+    this.setState({ generatedPhrase: event.target.value });
+  };
+
   addButtonClick = () => {
+    const columnsStore = this.props.columnsStore;
     const currentUser = this.props.userStore.getUser;
     const columns = this.props.firebase.columns();
-    const countColumns = this.props.columnsStore.countColumns;
-    if (countColumns < 6)
+    const countColumns = columnsStore.countColumns;
+    if (countColumns < 6) {
       columns
         .add({
           user: currentUser.id,
           phrases: [`Lorem ipsum!`]
         })
+        .then(function(docRef) {
+          columnsStore.setColumn(docRef.id, [`Lorem ipsum!`]);
+        })
         .catch(function(error) {
           console.error("Error adding document: ", error);
         });
-    //TODO: add normal msg for a user
-    else console.log("Max 6 columns is reached!");
+    } else {
+      this.setState({ showSnackbar: true });
+    }
+  };
+
+  handleSnackbarClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    this.setState({ showSnackbar: false });
   };
 
   onPhraseClick = (columnKey, phraseNumber, e) => {
@@ -98,6 +91,7 @@ class HomePage extends Component {
     const columns = this.props.firebase.columns();
     const oldPhrases = this.props.columnsStore.getColumns.get(columnKey);
     oldPhrases[phraseNumber] = e.target.value;
+
     this.props.columnsStore.getColumns.set(columnKey, [...oldPhrases]);
 
     columns
@@ -118,12 +112,14 @@ class HomePage extends Component {
       return;
     }
 
+    const columnsStore = this.props.columnsStore;
     const currentUser = this.props.userStore.getUser;
     const columns = this.props.firebase.columns();
-    const updatedPhrases = this.props.columnsStore.getColumns
-      .get(columnKey)
-      .toJS();
+    const updatedPhrases = columnsStore.getColumns.get(columnKey).toJS();
+
     updatedPhrases.splice(phraseNumber, 1);
+
+    columnsStore.setColumn(columnKey, [...updatedPhrases]);
 
     columns
       .doc(columnKey)
@@ -141,6 +137,11 @@ class HomePage extends Component {
     const currentUser = this.props.userStore.getUser;
     const columns = this.props.firebase.columns();
     const oldPhrases = this.props.columnsStore.getColumns.get(key);
+
+    this.props.columnsStore.getColumns.set(key, [
+      ...oldPhrases,
+      `Lorem ipsum!`
+    ]);
 
     columns
       .doc(key)
@@ -181,6 +182,12 @@ class HomePage extends Component {
     const countColumns = this.props.columnsStore.countColumns;
     return (
       <div>
+        <Snackbar
+          state={this.state.showSnackbar}
+          text={this.state.snackbarText}
+          handleClose={this.handleSnackbarClose}
+        />
+
         <AddButton onClick={this.addButtonClick} />
         {/*TODO: remove br's*/}
         <br />
