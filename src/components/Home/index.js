@@ -7,7 +7,7 @@ import { withFirebase } from "../Firebase";
 
 import AddButton from "./addBotton";
 import BuildButton from "./buildButton";
-import SimpleList from "./list";
+import SimpleList from "./SimpleList";
 
 import Grid from "@material-ui/core/Grid";
 import Fab from "@material-ui/core/Fab";
@@ -16,6 +16,28 @@ import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import { TextField } from "@material-ui/core";
+import * as PropTypes from "prop-types";
+
+function Greetings(props) {
+  return (
+    <Paper>
+      <TextField
+        value={props.value}
+        multiline
+        fullWidth
+        onChange={props.onChange}
+        variant="outlined"
+      />
+      <BuildButton onClick={props.onClick} />
+    </Paper>
+  );
+}
+
+Greetings.propTypes = {
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  onClick: PropTypes.func
+};
 
 class HomePage extends Component {
   state = {
@@ -197,13 +219,11 @@ class HomePage extends Component {
             </Grid>
           ))}
           <Grid item xs={12}>
-            <TextField
+            <Greetings
               value={this.state.generatedPhrase}
-              multiline
-              fullWidth
               onChange={this.handleGeneratedTextChange}
+              onClick={this.GenerateGreetings}
             />
-            <BuildButton onClick={this.GenerateGreetings} />
           </Grid>
         </Grid>
       </div>
