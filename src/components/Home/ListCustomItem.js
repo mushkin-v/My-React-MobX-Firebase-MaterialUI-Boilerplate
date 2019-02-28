@@ -41,7 +41,5 @@ export default function ListCustomItem(props) {
 ListCustomItem.propTypes = {
   value: PropTypes.any,
   onChange: PropTypes.func,
-  disableUnderline: PropTypes.bool,
-  onBlur: PropTypes.func,
   onClick: PropTypes.func
 };

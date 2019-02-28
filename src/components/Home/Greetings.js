@@ -1,21 +1,25 @@
-import Paper from "@material-ui/core/Paper";
 import { TextField } from "@material-ui/core";
 import * as PropTypes from "prop-types";
 import React from "react";
 import BuildButton from "./buildButton";
+import CopyButton from "./CopyButton";
 
 export default function Greetings(props) {
   return (
-    <Paper>
+    <React.Fragment>
+      <br />
       <TextField
         value={props.value}
         multiline
         fullWidth
         onChange={props.onChange}
-        variant="outlined"
+        // variant="filled"
       />
-      <BuildButton onClick={props.onClick} />
-    </Paper>
+      <br />
+      <br />
+      <CopyButton onClick={props.onCopyClick} />
+      <BuildButton onClick={props.onBuildClick} />
+    </React.Fragment>
   );
 }
 

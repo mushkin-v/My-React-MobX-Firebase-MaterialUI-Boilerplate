@@ -7,8 +7,12 @@ class ColumnsStore {
     this.rootStore = rootStore;
   }
 
-  setColumn = (id, phrases) => {
-    this.columns.set(id, phrases);
+  setColumn = (id, data) => {
+    this.columns.set(id, data);
+  };
+
+  reset = () => {
+    this.columns.clear();
   };
 
   deleteColumn = id => {
@@ -19,7 +23,13 @@ class ColumnsStore {
     return this.columns;
   }
   get countColumns() {
-    return this.columns.size;
+    return this.columns ? this.columns.size : 0;
+  }
+
+  get lastOrderValue() {
+    if (this.columns && this.columns.values().length > 0)
+      return Array.from(this.columns.values()).pop().order;
+    else return 0;
   }
 }
 
@@ -27,6 +37,7 @@ decorate(ColumnsStore, {
   columns: observable,
   getColumns: computed,
   countColumns: computed,
+  lastOrderValue: computed,
   setColumn: action,
   deleteColumn: action
 });

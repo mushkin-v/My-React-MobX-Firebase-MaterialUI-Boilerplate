@@ -15,6 +15,8 @@ class UserStore {
     };
   };
 
+  resetUser = () => (this.user = {});
+
   get getUser() {
     return this.user;
   }
@@ -23,7 +25,8 @@ class UserStore {
 decorate(UserStore, {
   user: observable,
   getUser: computed,
-  setUser: action
+  setUser: action,
+  resetUser: action
 });
 
 export default UserStore;

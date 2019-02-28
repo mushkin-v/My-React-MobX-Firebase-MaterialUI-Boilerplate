@@ -1,30 +1,31 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import BuildIcon from "@material-ui/icons/Build";
+import FileCopyIcon from "@material-ui/icons/FileCopy";
 import Fab from "@material-ui/core/Fab";
 import Tooltip from "@material-ui/core/Tooltip";
 
 const styles = theme => ({
   fab: {
+    marginRight: "15px",
     color: theme.palette.common.white,
-    backgroundColor: "#212121",
+    backgroundColor: "#263238",
     "&:hover": {
-      backgroundColor: "#424242"
+      backgroundColor: "#37474f"
     }
   }
 });
 
-const BuildButton = ({ classes, onClick }) => (
-  <Tooltip title="Click to generate!">
+const CopyButton = ({ classes, onClick }) => (
+  <Tooltip title="Click to copy text to clipboard!">
     <Fab className={classes.fab} color="primary" onClick={onClick}>
-      <BuildIcon />
+      <FileCopyIcon />
     </Fab>
   </Tooltip>
 );
 
-BuildButton.propTypes = {
+CopyButton.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(BuildButton);
+export default withStyles(styles)(CopyButton);

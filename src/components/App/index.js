@@ -12,6 +12,7 @@ import withAuthentication from "../Session/withAuthentication";
 import * as routes from "../../constants/routes";
 import Footer from "../Footer";
 import Page404 from "../Page404";
+import GAListener from "./ga";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
 
@@ -19,36 +20,46 @@ import "./index.css";
 
 const App = () => (
   <Router>
-    <div className="app">
-      <div className="app-content">
-        <CssBaseline />
-        <Navigation />
+    <GAListener>
+      <div className="app">
+        <div className="app-content">
+          <CssBaseline />
+          <Navigation />
 
-        <Switch>
-          <Route
-            exact
-            path={routes.LANDING}
-            component={() => <LandingPage />}
-          />
-          <Route exact path={routes.SIGN_UP} component={() => <SignUpPage />} />
-          <Route exact path={routes.SIGN_IN} component={() => <SignInForm />} />
-          <Route
-            exact
-            path={routes.PASSWORD_FORGET}
-            component={() => <PasswordForgetPage />}
-          />
-          <Route exact path={routes.HOME} component={() => <HomePage />} />
-          <Route
-            exact
-            path={routes.ACCOUNT}
-            component={() => <AccountPage />}
-          />
-          <Route component={() => <Page404 />} />
-        </Switch>
+          <Switch>
+            <Route
+              exact
+              path={routes.LANDING}
+              component={() => <LandingPage />}
+            />
+            <Route
+              exact
+              path={routes.SIGN_UP}
+              component={() => <SignUpPage />}
+            />
+            <Route
+              exact
+              path={routes.SIGN_IN}
+              component={() => <SignInForm />}
+            />
+            <Route
+              exact
+              path={routes.PASSWORD_FORGET}
+              component={() => <PasswordForgetPage />}
+            />
+            <Route exact path={routes.HOME} component={() => <HomePage />} />
+            <Route
+              exact
+              path={routes.ACCOUNT}
+              component={() => <AccountPage />}
+            />
+            <Route component={() => <Page404 />} />
+          </Switch>
+        </div>
+
+        <Footer />
       </div>
-
-      <Footer />
-    </div>
+    </GAListener>
   </Router>
 );
 

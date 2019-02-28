@@ -19,7 +19,7 @@ function SimpleSnackbar(props, classes) {
           horizontal: "center"
         }}
         open={props.state}
-        autoHideDuration={2000}
+        autoHideDuration={3000}
         onClose={props.handleClose}
         ContentProps={{
           "aria-describedby": "message-id"

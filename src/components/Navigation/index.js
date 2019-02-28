@@ -98,6 +98,8 @@ class Navigation extends React.Component {
 
   handleModalAction = () => {
     this.handleModalClose();
+    this.props.columnsStore.reset();
+    this.props.userStore.resetUser();
     this.props.firebase.doSignOut();
   };
 
@@ -147,7 +149,7 @@ Navigation.propTypes = {
 };
 
 export default compose(
-  inject("sessionStore"),
+  inject("sessionStore", "userStore", "columnsStore"),
   withRouter,
   withFirebase,
   observer,
