@@ -37,7 +37,7 @@ ReactDOM.render(
     <FirebaseContext.Provider value={new Firebase()}>
       <MuiThemeProvider theme={theme}>
         <App />
-        <DevTools />
+        {/*<DevTools />*/}
       </MuiThemeProvider>
     </FirebaseContext.Provider>
   </Provider>,
