@@ -8,7 +8,6 @@ import { Provider } from "mobx-react";
 import store from "./stores";
 import Firebase, { FirebaseContext } from "./components/Firebase";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import DevTools from "mobx-react-devtools";
 
 dotenv.config();
 
@@ -37,7 +36,6 @@ ReactDOM.render(
     <FirebaseContext.Provider value={new Firebase()}>
       <MuiThemeProvider theme={theme}>
         <App />
-        {/*<DevTools />*/}
       </MuiThemeProvider>
     </FirebaseContext.Provider>
   </Provider>,
