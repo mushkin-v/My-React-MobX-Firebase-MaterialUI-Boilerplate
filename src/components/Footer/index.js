@@ -12,7 +12,7 @@ const Footer = ({ classes }) => (
       align="center"
       className={classes.footer}
     >
-      Powered by Mushkin Vitaliy © 2019
+      {/*Powered by Mushkin Vitaliy © 2019*/}
     </Typography>
   </div>
 );
